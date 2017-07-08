@@ -7,11 +7,13 @@ object Dot {
   def apply(graph: Graph): Dot = new Dot(graph)
 }
 
-class Dot(graph: Graph) {
+/**
+  * Wrapper for a [[Graph]] enabling rendering the Graph to the native Graphviz format
+  * @param graph The graph
+  */
+case class Dot(graph: Graph) {
 
   import graph._
-
-  require(isValid)
 
   private val nodeIdMap: Map[Node, Int] = nodes.zipWithIndex.toMap
 
@@ -59,7 +61,7 @@ class Dot(graph: Graph) {
     s"${nodeIdMap(edge.from)} $edgeOperator ${nodeIdMap(edge.to)}${formatAttributes(edge)};"
   }
 
-  private def formatAttributes(entity: AttributeHolder) = {
+  private def formatAttributes[T](entity: AttributeHolder[T]) = {
     if (entity.attributes.isEmpty) {
       ""
     } else {
@@ -76,10 +78,6 @@ class Dot(graph: Graph) {
       case GraphMode.Strict => "strict "
       case _ => ""
     }
-  }
-
-  def isValid: Boolean = {
-    edges.forall(edge => nodes.contains(edge.from) && nodes.contains(edge.to))
   }
 
   private def mkLabel(label: Option[String]) = {

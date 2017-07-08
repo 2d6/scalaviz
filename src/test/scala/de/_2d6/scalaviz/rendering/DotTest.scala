@@ -68,18 +68,6 @@ class DotTest extends FlatSpec with Matchers {
     Dot(graphWithEdge).toString() should include(edgeDefinition(0, 0))
   }
 
-  it should "reject edges referencing a node not contained in it" in {
-    val graphWithInvalidEdge = graph.copy(nodes = Seq(nodeA), edges = Seq(edgeAB))
-
-    an[IllegalArgumentException] should be thrownBy Dot(graphWithInvalidEdge).toString()
-  }
-
-  it should "reject edges referencing two nodes not contained in it" in {
-    val graphWithInvalidEdge = graph.copy(edges = Seq(edgeAA))
-
-    an[IllegalArgumentException] should be thrownBy Dot(graphWithInvalidEdge).toString()
-  }
-
   it should "not be strict by default" in {
     Dot(graph).toString() should not include "strict"
   }

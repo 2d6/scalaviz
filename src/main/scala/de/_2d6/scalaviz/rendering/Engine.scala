@@ -1,11 +1,17 @@
 package de._2d6.scalaviz.rendering
 
+/**
+  * The engine with which to render a [[de._2d6.scalaviz.graph.Graph]]
+  */
 sealed trait Engine {
   def name: String
 
   override def toString: String = name
 }
 
+/**
+  * The engine with which to render a [[de._2d6.scalaviz.graph.Graph]]
+  */
 case object Engine {
 
   case object Dot extends Engine {

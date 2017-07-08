@@ -8,15 +8,22 @@ import org.apache.commons.lang3.SystemUtils
 
 import scala.sys.process._
 
-
+/**
+  * Renders [[Graph]]s to files
+  */
 object Renderer {
 
-  require(SystemUtils.IS_OS_LINUX, "Scalaviz is only supported on Linux")
+  require(SystemUtils.IS_OS_LINUX, "Scalaviz rendering is only supported on Linux")
 
+  /**
+    * Render the given graph, returning the resulting file as a [[Path]]
+    * @param graph The [[Graph]] to render
+    * @param engine The [[Engine]] with which to render the graph
+    * @param format The [[OutputFormat]] of the output file
+    * @return A [[Path]] referencing the resulting file
+    */
   def render(graph: Graph, engine: Engine = Engine.Dot, format: OutputFormat = OutputFormat.pdf): Path = {
     val dot = Dot(graph)
-    require(dot.isValid, "The given graph is invalid. Do the edges reference nodes non contained in the graph?")
-
     renderToOutputFile(dot, engine, format)
   }
 
