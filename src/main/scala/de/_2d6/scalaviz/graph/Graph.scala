@@ -1,4 +1,4 @@
-package de._2d6.scalaviz
+package de._2d6.scalaviz.graph
 
 case class Graph(name: String,
                  nodes: Seq[Node] = Nil,

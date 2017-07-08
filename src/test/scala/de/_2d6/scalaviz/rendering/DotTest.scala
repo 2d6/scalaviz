@@ -1,5 +1,6 @@
-package de._2d6.scalaviz
+package de._2d6.scalaviz.rendering
 
+import de._2d6.scalaviz.graph._
 import org.scalatest.{FlatSpec, Matchers}
 
 class DotTest extends FlatSpec with Matchers {

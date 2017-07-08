@@ -1,4 +1,4 @@
-package de._2d6.scalaviz
+package de._2d6.scalaviz.graph
 
 sealed trait GraphType
 
